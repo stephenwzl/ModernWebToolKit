@@ -1,7 +1,9 @@
 PODS:
   - Expecta (1.0.6)
-  - ModernWebToolKit (0.1.0)
+  - ModernWebToolKit (0.1.0):
+    - SSZipArchive
   - Specta (1.0.7)
+  - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
   - Expecta
@@ -12,6 +14,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Expecta
     - Specta
+    - SSZipArchive
 
 EXTERNAL SOURCES:
   ModernWebToolKit:
@@ -19,8 +22,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  ModernWebToolKit: 2f3cfa3a68780a2546b098a0632e16a6baa7f40f
+  ModernWebToolKit: 83adab6be1341d6c0bf6d2e919606be16f0741e5
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
 PODFILE CHECKSUM: 4a7f8f8bd4499722b61785379a8f4d264788b8f8
 

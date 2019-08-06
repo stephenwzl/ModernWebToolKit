@@ -7,7 +7,7 @@
 //
 
 #import "MWAppDelegate.h"
-#import <ModernWebToolKit/ModernWebService.h>
+#import <ModernWebToolKit/ModernWebToolKit.h>
 
 @implementation MWAppDelegate
 
@@ -15,6 +15,11 @@
 {
     // Override point for customization after application launch.
     [ModernWebService.shared initializeWithConfig:nil];
+    ModernWebApp *app = [ModernWebApp new];
+    app.appId = @"20000063";
+    app.downloadPath = [NSBundle.mainBundle pathForResource:@"20000063" ofType:@"zip"];
+
+    [ModernWebAppCenter.sharedCenter registerApp:app];
     return YES;
 }
 

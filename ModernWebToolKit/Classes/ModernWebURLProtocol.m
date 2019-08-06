@@ -26,10 +26,16 @@ static  NSString *const kModernWebURLProtocolHandledKey = @"kModernWebURLProtoco
     if ([NSURLProtocol propertyForKey:kModernWebURLProtocolHandledKey inRequest:request]) {
         return NO;
     }
-    if ([url.host isEqualToString:ModernWebService.shared.config.virtualHost]) {
+    if ([url.host hasSuffix:ModernWebService.shared.config.virtualHost]) {
         return YES;
     }
     return NO;
+}
+
++ (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
+    NSMutableURLRequest *mutableReqeust = [request mutableCopy];
+    // 执行自定义操作，例如添加统一的请求头等
+    return mutableReqeust;
 }
 
 + (BOOL)requestIsCacheEquivalent:(NSURLRequest *)a toRequest:(NSURLRequest *)b {
@@ -53,13 +59,13 @@ static  NSString *const kModernWebURLProtocolHandledKey = @"kModernWebURLProtoco
     NSString *mimeType = nil;
     NSData *data = nil;
     NSString *ext = url.pathExtension;
-    if ([@[@"gif", @"png", @"webp"] indexOfObject:ext]) {
+    if ([@[@"gif", @"png", @"webp"] indexOfObject:ext] != NSNotFound) {
         mimeType = [@"image/" stringByAppendingString:ext];
-    } else if ([@[@"jpg", @"jpeg"] indexOfObject:ext]) {
+    } else if ([@[@"jpg", @"jpeg"] indexOfObject:ext] != NSNotFound) {
         mimeType = @"image/jpeg";
-    } else if ([@[@"css", @"html", @"xml", @"csv"] indexOfObject:ext]) {
+    } else if ([@[@"css", @"html", @"xml", @"csv"] indexOfObject:ext] != NSNotFound) {
         mimeType = [@"text/" stringByAppendingString:ext];
-    } else if ([@[@"js", @"json", @"pdf"] indexOfObject:ext]) {
+    } else if ([@[@"js", @"json", @"pdf"] indexOfObject:ext] != NSNotFound) {
         mimeType = [@"application/" stringByAppendingString:ext];
     }
     // TODO: video & audio not supported yet
@@ -68,6 +74,10 @@ static  NSString *const kModernWebURLProtocolHandledKey = @"kModernWebURLProtoco
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
     [self.client URLProtocol:self didLoadData:data];
     [self.client URLProtocolDidFinishLoading:self];
+}
+
+- (void)stopLoading {
+    
 }
 
 #pragma mark - getter

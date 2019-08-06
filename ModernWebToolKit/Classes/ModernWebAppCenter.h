@@ -47,6 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *launchParams;
 
 /**
+ version code
+ */
+@property (nonatomic, assign) NSInteger version;
+
+/**
  execute install if it's not installed
 
  @param completion executed when installed

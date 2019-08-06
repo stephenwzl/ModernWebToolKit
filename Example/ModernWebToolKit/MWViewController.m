@@ -7,8 +7,10 @@
 //
 
 #import "MWViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface MWViewController ()
+@property (weak, nonatomic) IBOutlet WKWebView *webview;
 
 @end
 
@@ -17,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.webview loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://20000063.stephenw.cc/index.html"]]];
 }
 
 - (void)didReceiveMemoryWarning

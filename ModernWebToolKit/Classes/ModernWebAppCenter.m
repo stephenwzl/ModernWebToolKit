@@ -8,6 +8,8 @@
 #import "ModernWebAppCenter.h"
 #import "ModernWebService.h"
 
+#import <SSZipArchive/SSZipArchive.h>
+
 static NSString *const kModernWebAppInstallPath = @"/modernwebapp/installed";
 static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 
@@ -71,7 +73,14 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 }
 
 - (void)registerApp:(ModernWebApp *)app {
+    ModernWebApp *existing = self.apps[app.appId];
+    if (existing && existing.version >= app.version) {
+        return;
+    }
     self.apps[app.appId] = app;
+    [app installWithCompletion:^{
+        NSLog(@"%@ version: %ld installed", app.appId, app.version);
+    }];
 }
 
 - (void)sync {
@@ -111,6 +120,7 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
     [aCoder encodeObject:self.appId forKey:@"appId"];
     [aCoder encodeObject:self.info?:@{} forKey:@"info"];
     [aCoder encodeObject:self.launchParams?:@{} forKey:@"launchParams"];
+    [aCoder encodeInteger:self.version forKey:@"version"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -118,6 +128,7 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
         self.appId = [aDecoder decodeObjectForKey:@"appId"];
         self.info = [aDecoder decodeObjectForKey:@"info"];
         self.launchParams = [aDecoder decodeObjectForKey:@"launchParams"];
+        self.version = [aDecoder decodeIntegerForKey:@"version"];
     }
     return self;
 }
@@ -128,6 +139,16 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
         _installPath = [doc stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@", kModernWebAppInstallPath, self.appId]];
     }
     return _installPath;
+}
+
+- (void)installWithCompletion:(void (^)(void))completion {
+    if([NSFileManager.defaultManager fileExistsAtPath:self.installPath]) {
+        completion();
+        return;
+    }
+    NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    [SSZipArchive unzipFileAtPath:self.downloadPath toDestination:[doc stringByAppendingPathComponent:kModernWebAppInstallPath]];
+    completion();
 }
 
 @end
