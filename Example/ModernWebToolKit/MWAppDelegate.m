@@ -7,12 +7,14 @@
 //
 
 #import "MWAppDelegate.h"
+#import <ModernWebToolKit/ModernWebService.h>
 
 @implementation MWAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [ModernWebService.shared initializeWithConfig:nil];
     return YES;
 }
 
