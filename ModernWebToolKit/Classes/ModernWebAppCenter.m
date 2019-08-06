@@ -9,6 +9,7 @@
 #import "ModernWebService.h"
 
 static NSString *const kModernWebAppInstallPath = @"/modernwebapp/installed";
+static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 
 @interface ModernWebAppCenter()
 
@@ -91,7 +92,7 @@ static NSString *const kModernWebAppInstallPath = @"/modernwebapp/installed";
 - (NSString *)appsCachePath {
     if (!_appsCachePath) {
          NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-        _appsCachePath = [doc stringByAppendingPathComponent:@"/appcenter.apps"];
+        _appsCachePath = [doc stringByAppendingPathComponent:@"/modernweb/appcenter.apps"];
     }
     return _appsCachePath;
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14B8141222F9908300BE62F8 /* 20000063.zip in Resources */ = {isa = PBXBuildFile; fileRef = 14B8141122F9908200BE62F8 /* 20000063.zip */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14B8141122F9908200BE62F8 /* 20000063.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = 20000063.zip; sourceTree = "<group>"; };
 		232757B3149582C42147AD71 /* libPods-ModernWebToolKit_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModernWebToolKit_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		282B6BFF91DF0F7B78F6BC1C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2B0E879F551457A2A0AAED85 /* libPods-ModernWebToolKit_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModernWebToolKit_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				14B8141122F9908200BE62F8 /* 20000063.zip */,
 				6003F595195388D20070C39A /* ModernWebToolKit-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				14B8141222F9908300BE62F8 /* 20000063.zip in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
