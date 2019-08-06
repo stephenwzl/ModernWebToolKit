@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'ModernWebToolKit_Example' do
+  pod 'ModernWebToolKit', :path => '../'
+
+  target 'ModernWebToolKit_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
+end
