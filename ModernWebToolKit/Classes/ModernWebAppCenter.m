@@ -43,7 +43,10 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 - (instancetype)init {
     if (self = [super init]) {
 
-        _apps = [NSMutableDictionary new];
+        [self read];
+        if (!_apps) {
+            _apps = [NSMutableDictionary new];
+        }
         [NSNotificationCenter.defaultCenter addObserver:self
                                                selector:@selector(read)
                                                    name:UIApplicationDidFinishLaunchingNotification
@@ -91,6 +94,9 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 }
 
 - (void)read {
+    if (self.apps && self.apps.count > 0) {
+        return;
+    }
     if ([NSFileManager.defaultManager fileExistsAtPath:self.appsCachePath]) {
         self.apps = [(NSDictionary *)[NSKeyedUnarchiver unarchiveObjectWithFile:self.appsCachePath] mutableCopy];
     }
@@ -101,7 +107,7 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 - (NSString *)appsCachePath {
     if (!_appsCachePath) {
          NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-        _appsCachePath = [doc stringByAppendingPathComponent:@"/modernweb/appcenter.apps"];
+        _appsCachePath = [doc stringByAppendingPathComponent:@"/modernwebapp/appcenter.apps"];
     }
     return _appsCachePath;
 }
@@ -142,10 +148,10 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 }
 
 - (void)installWithCompletion:(void (^)(void))completion {
-    if([NSFileManager.defaultManager fileExistsAtPath:self.installPath]) {
-        completion();
-        return;
-    }
+//    if([NSFileManager.defaultManager fileExistsAtPath:self.installPath]) {
+//        completion();
+//        return;
+//    }
     NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     [SSZipArchive unzipFileAtPath:self.downloadPath toDestination:[doc stringByAppendingPathComponent:kModernWebAppInstallPath]];
     completion();
