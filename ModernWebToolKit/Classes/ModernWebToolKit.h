@@ -10,4 +10,6 @@
 
 #import <ModernWebToolKit/ModernWebAppCenter.h>
 #import <ModernWebToolKit/ModernWebService.h>
+#import <ModernWebToolKit/ModernWebViewController.h>
+#import <ModernWebToolKit/ModernWebAPI.h>
 #endif /* ModernWebToolKit_h */

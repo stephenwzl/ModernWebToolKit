@@ -148,10 +148,6 @@ static NSString *const kModernWebAppDownloadPath = @"/modernwebapp/downloaded";
 }
 
 - (void)installWithCompletion:(void (^)(void))completion {
-//    if([NSFileManager.defaultManager fileExistsAtPath:self.installPath]) {
-//        completion();
-//        return;
-//    }
     NSString *doc = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     [SSZipArchive unzipFileAtPath:self.downloadPath toDestination:[doc stringByAppendingPathComponent:kModernWebAppInstallPath]];
     completion();
