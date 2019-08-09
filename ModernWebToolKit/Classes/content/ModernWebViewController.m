@@ -6,11 +6,13 @@
 //
 
 #import "ModernWebViewController.h"
+#import "ModernWebAPI.h"
 #import <WebKit/WebKit.h>
 
 @interface ModernWebViewController ()
 
 @property (nonatomic, strong) WKWebView *webview;
+@property (nonatomic, strong) ModernWebAPIContext *context;
 
 @end
 
@@ -22,10 +24,18 @@
 
 - (WKWebView *)webview {
     if (!_webview) {
-        WKWebViewConfiguration *configuration = nil;
-        _webview = [[WKWebView alloc] initWithFrame:UIScreen.mainScreen.bounds configuration:configuration];
+        _webview = [[WKWebView alloc] initWithFrame:UIScreen.mainScreen.bounds
+                                      configuration:self.context.configuration];
     }
     return _webview;
+}
+
+- (ModernWebAPIContext *)context {
+    if (!_context) {
+        _context = [ModernWebAPIContext new];
+        _context.contentController = self;
+    }
+    return _context;
 }
 
 @end

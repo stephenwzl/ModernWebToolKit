@@ -8,11 +8,15 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+@class ModernWebAPIContext;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ModernWebViewController : UIViewController
 
 @property (nonatomic, readonly) WKWebView *webview;
+
+@property (nonatomic, readonly) ModernWebAPIContext *context;
 
 @end
 
