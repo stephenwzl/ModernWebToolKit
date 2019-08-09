@@ -6,7 +6,7 @@
 //
 
 #import "ModernWebService.h"
-#import "ModernWebURLProtocol.m"
+#import "ModernWebURLProtocol.h"
 
 #import <WebKit/WebKit.h>
 
