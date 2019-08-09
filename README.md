@@ -1,24 +1,23 @@
 # ModernWebToolKit
 
-[![CI Status](https://img.shields.io/travis/stephenwzl/ModernWebToolKit.svg?style=flat)](https://travis-ci.org/stephenwzl/ModernWebToolKit)
-[![Version](https://img.shields.io/cocoapods/v/ModernWebToolKit.svg?style=flat)](https://cocoapods.org/pods/ModernWebToolKit)
-[![License](https://img.shields.io/cocoapods/l/ModernWebToolKit.svg?style=flat)](https://cocoapods.org/pods/ModernWebToolKit)
-[![Platform](https://img.shields.io/cocoapods/p/ModernWebToolKit.svg?style=flat)](https://cocoapods.org/pods/ModernWebToolKit)
+## Parts
 
-## Example
+* AppCenter  
+abstract for web applications. Including register apps, sync apps' info, install web apps into file system.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+* Web Application  
+the whole application will be packageg into a zip bundle. There also will be some extra info such as: icon, name ,launch parameters provided in that bundle.
 
-## Requirements
+* Offline-bundle  
+offline app bundle was stored in CDN(content distribution network), the bunle's link will be store in app's info in AppCenter. It's a kind of zip bundle in nature.
 
-## Installation
+* Webview  
+loading web content from local file system. Inject Javascript API to be invoked by the content.
 
-ModernWebToolKit is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+* JSAPI  
+some hight level APIs for web developers to invoke for some purpose. There will be default implementation, but there also will be able to register JSAPI plugins for extra implementation.
+ 
 
-```ruby
-pod 'ModernWebToolKit'
-```
 
 ## Author
 
